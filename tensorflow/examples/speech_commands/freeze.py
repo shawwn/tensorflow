@@ -222,7 +222,8 @@ if __name__ == '__main__':
   parser.add_argument(
       '--wanted_words',
       type=str,
-      default='yes,no,up,down,left,right,on,off,stop,go',
+      #default='yes,no,up,down,left,right,on,off,stop,go',
+      default='backward,down,eight,five,follow,forward,four,go,learn,left,nine,no,off,on,one,right,seven,six,stop,three,tree,two,up,visual,wow,yes,zero',
       help='Words to use (others will be added to an unknown label)',)
   parser.add_argument(
       '--output_file', type=str, help='Where to save the frozen graph.')
