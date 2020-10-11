@@ -48,7 +48,7 @@ std::string Traceback::ToString() const {
 
 std::vector<Traceback::Frame> Traceback::Frames() const {
   // We require the GIL because we manipulate Python strings.
-  CHECK(PyGILState_Check());
+  //CHECK(PyGILState_Check()); // TKTK: error: use of undeclared identifier 'PyGILState_Check'
   std::vector<Traceback::Frame> frames;
   frames.reserve(frames_.size());
   for (const auto& frame : frames_) {
@@ -62,7 +62,7 @@ std::vector<Traceback::Frame> Traceback::Frames() const {
 }
 
 std::shared_ptr<Traceback> Traceback::Get() {
-  DCHECK(PyGILState_Check());
+  //DCHECK(PyGILState_Check()); // TKTK: error: use of undeclared identifier 'PyGILState_Check'
   if (!enabled_) {
     return nullptr;
   }

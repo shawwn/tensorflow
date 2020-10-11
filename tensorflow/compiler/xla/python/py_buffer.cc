@@ -29,7 +29,7 @@ PyBuffer::PyBuffer(std::shared_ptr<PyClient> client,
     : client_(std::move(client)),
       buffer_(std::move(buffer)),
       traceback_(std::move(traceback)) {
-  CHECK(PyGILState_Check());
+  //CHECK(PyGILState_Check()); TKTK  error: use of undeclared identifier 'PyGILState_Check'
   next_ = client_->buffers_;
   client_->buffers_ = this;
   prev_ = nullptr;
@@ -39,7 +39,7 @@ PyBuffer::PyBuffer(std::shared_ptr<PyClient> client,
 }
 
 PyBuffer::~PyBuffer() {
-  CHECK(PyGILState_Check());
+  //CHECK(PyGILState_Check()); TKTK  error: use of undeclared identifier 'PyGILState_Check'
   if (client_->buffers_ == this) {
     client_->buffers_ = next_;
   }

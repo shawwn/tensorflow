@@ -238,7 +238,7 @@ H AbslHashValue(H h, const HeapProfileKey& key) {
 }  // namespace
 
 py::bytes PyClient::HeapProfile() {
-  CHECK(PyGILState_Check());
+  //CHECK(PyGILState_Check()); // TKTK error: use of undeclared identifier 'PyGILState_Check'
   absl::flat_hash_map<HeapProfileKey, int64> entries;
   for (PyBuffer* buffer = buffers_; buffer; buffer = buffer->next_) {
     HeapProfileKey key{buffer->traceback(),

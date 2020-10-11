@@ -429,10 +429,13 @@ void FlattenArguments(const py::args& args, const py::kwargs& py_kwargs,
   arguments.signature.keyword_args.resize(kwargs.size());
   for (size_t i = 0; i < kwargs.size(); ++i) {
     // Intern the key if not already interned.
-    if (!PyUnicode_CHECK_INTERNED(kwargs[i].first.ptr())) {
+    //if (!PyUnicode_CHECK_INTERNED(kwargs[i].first.ptr())) { // TKTK error: use of undeclared identifier 'PyUnicode_CHECK_INTERNED'
+    if (!PyString_CHECK_INTERNED(kwargs[i].first.ptr())) {
+
       PyObject* key = kwargs[i].first.ptr();
       kwargs[i].first.inc_ref();
-      PyUnicode_InternInPlace(&key);
+      //PyUnicode_InternInPlace(&key);
+      PyString_InternInPlace(&key); // TKTK  error: use of undeclared identifier 'PyUnicode_InternInPlace'; did you mean 'PyString_InternInPlace'?
       arguments.keep_alive_objects.push_back(
           py::reinterpret_steal<py::object>(key));
       kwargs[i].first = py::handle(key);

@@ -30,7 +30,7 @@ PyExecutable::PyExecutable(std::shared_ptr<PyClient> client,
       executable_(std::move(executable)),
       traceback_(std::move(traceback)),
       fingerprint_(std::move(fingerprint)) {
-  CHECK(PyGILState_Check());
+  //CHECK(PyGILState_Check()); // TKTK: error: use of undeclared identifier 'PyGILState_Check'
   next_ = client_->executables_;
   client_->executables_ = this;
   prev_ = nullptr;
@@ -46,7 +46,7 @@ PyExecutable::PyExecutable(std::shared_ptr<PyClient> client,
 }
 
 PyExecutable::~PyExecutable() {
-  CHECK(PyGILState_Check());
+  //CHECK(PyGILState_Check()); // TKTK: error: use of undeclared identifier 'PyGILState_Check'
   if (client_->executables_ == this) {
     client_->executables_ = next_;
   }
